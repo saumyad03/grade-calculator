@@ -1,10 +1,12 @@
 const express = require("express")
 const { requireAuth } = require("../middleware/requireAuth")
-const { createClass, updateClass, deleteClass } = require("../controllers/classController")
+const { createClass, updateClass, deleteClass, getClasses } = require("../controllers/classController")
 
 const router = express.Router()
 
 router.use(requireAuth)
+
+router.get("/", getClasses)
 
 router.post("/", createClass)
 

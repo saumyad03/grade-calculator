@@ -1,4 +1,10 @@
 const User = require("../models/userModel")
+
+const getClasses = async(req, res) => {
+    const user = req.user
+    res.status(200).json(user.classes)
+}
+
 const createClass = async (req, res) => {
     const {name, categories} = req.body
     const user = req.user
@@ -37,6 +43,7 @@ const deleteClass = async(req, res) => {
 }
 
 module.exports = {
+    getClasses,
     createClass,
     updateClass,
     deleteClass
