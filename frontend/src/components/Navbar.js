@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../contexts/AuthContext"
+import { Logout } from "./Logout"
 
 export const Navbar = () => {
     const {user} = useContext(AuthContext)
@@ -8,7 +9,7 @@ export const Navbar = () => {
         <div>
             {user && 
                 <div>
-                    <Link to="/logout">Logout</Link><br />
+                    <Logout /><br />
                 </div>
             }
             {!user &&
