@@ -19,7 +19,9 @@ const classSchema = new Schema({
         type: String,
         required: true
     },
-    categories: [categorySchema]
+    categories: {
+        type: [categorySchema]
+    }
 })
 
 const userSchema = new Schema({
@@ -31,7 +33,9 @@ const userSchema = new Schema({
             type: String,
             required: true
         },
-        classes: [classSchema]
+        classes: {
+            type: [classSchema],
+        }
 })
 
 userSchema.statics.signup = async function(email, password) {
