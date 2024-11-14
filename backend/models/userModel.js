@@ -3,6 +3,25 @@ const bcrypt = require("bcrypt")
 
 const Schema = mongoose.Schema
 
+const categorySchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    weight: {
+        type: Number,
+        required: true
+    }
+})
+
+const classSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    categories: [categorySchema]
+})
+
 const userSchema = new Schema({
         email: {
             type: String,
@@ -11,7 +30,8 @@ const userSchema = new Schema({
         password: {
             type: String,
             required: true
-        }
+        },
+        classes: [classSchema]
 })
 
 userSchema.statics.signup = async function(email, password) {
@@ -20,7 +40,7 @@ userSchema.statics.signup = async function(email, password) {
         throw Error("User with this email already exists")
     }
     const hash = await bcrypt.hash(password, 10)
-    const user = this.create({email, password: hash})
+    const user = this.create({email, password: hash, classes: []})
     return user
 }
 
